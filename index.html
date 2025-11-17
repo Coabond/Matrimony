@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- Viewport already good for mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vishwanil Chakraborty - Matrimonial Profile</title>
     
@@ -12,7 +13,6 @@
     
     <style>
         :root {
-            /* Deep Blue/Purple Theme */
             --bg-color-dark: #1a1a2e;
             --bg-color-light: #0f3460;
             --card-bg: #222642;
@@ -52,11 +52,9 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            /* Transition for the Zoom effect */
             transition: transform 2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        /* Active class for Zoom only (No Rotation) */
         .animate-active {
             transform: scale(1.4); 
         }
@@ -109,6 +107,7 @@
             color: var(--heading-color); 
             margin: 0; 
             text-shadow: 0 2px 5px var(--shadow-dark);
+            word-break: break-word;
         }
         .profile-tagline { 
             font-size: 1.15rem; 
@@ -116,6 +115,7 @@
             margin-top: 8px; 
             font-style: italic; 
             letter-spacing: 0.5px;
+            padding: 0 10px;
         }
         .download-button { 
             display: inline-flex;
@@ -189,7 +189,8 @@
             padding: 18px;
             border-radius: 12px; 
             transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; 
-            overflow-wrap: break-word; word-break: break-all; 
+            overflow-wrap: break-word; 
+            word-break: break-word; 
             box-shadow: 0 2px 8px var(--shadow-light);
         }
         .info-item:hover { 
@@ -216,6 +217,8 @@
             cursor: pointer; 
             transition: color 0.3s ease, transform 0.2s ease; 
             color: var(--subtle-text);
+            font-size: 1.2rem;
+            padding-left: 10px;
         }
         #salary-toggle:hover { 
             color: var(--secondary-accent); 
@@ -253,19 +256,47 @@
         
         /* Lightbox (Full Screen) Styles */
         .lightbox {
-            display: none; position: fixed; z-index: 1000; padding-top: 50px; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.95); animation: fadeIn 0.3s;
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            padding-top: 50px; 
+            left: 0; 
+            top: 0; 
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0, 0, 0, 0.95); 
+            animation: fadeIn 0.3s;
         }
         .lightbox-content {
-            margin: auto; display: block; width: 85%; max-width: 900px; max-height: 90vh; object-fit: contain; border-radius: 15px; box-shadow: 0 0 40px rgba(3, 218, 198, 0.7);
+            margin: auto; 
+            display: block; 
+            width: 85%; 
+            max-width: 900px; 
+            max-height: 90vh; 
+            object-fit: contain; 
+            border-radius: 15px; 
+            box-shadow: 0 0 40px rgba(3, 218, 198, 0.7);
         }
         .close {
-            position: absolute; top: 20px; right: 40px; color: #f1f1f1; font-size: 45px; font-weight: bold; transition: 0.3s; cursor: pointer;
+            position: absolute; 
+            top: 20px; 
+            right: 20px; 
+            color: #f1f1f1; 
+            font-size: 40px; 
+            font-weight: bold; 
+            transition: 0.3s; 
+            cursor: pointer;
+            padding: 10px;
         }
-        .close:hover, .close:focus { color: var(--secondary-accent); text-decoration: none; cursor: pointer; transform: scale(1.1); }
+        .close:hover, .close:focus { 
+            color: var(--secondary-accent); 
+            text-decoration: none; 
+            cursor: pointer; 
+            transform: scale(1.1); 
+        }
 
-        /* ==========================================================================
-           PRINT / PDF STYLES
-           ========================================================================== */
+        /* PRINT / PDF STYLES */
         @media print {
             body { background: #ffffff !important; color: #000000 !important; margin: 0 !important; }
             .container { box-shadow: none !important; border: none !important; margin: 0 !important; width: 100% !important; max-width: 100% !important; }
@@ -287,12 +318,125 @@
             .photo-gallery { page-break-inside: avoid; }
         }
 
+        /* ========= TABLET (portrait/landscape up to ~1024px) ========= */
+        @media (max-width: 1024px) {
+            body {
+                padding: 30px 15px;
+            }
+            .container {
+                padding: 30px;
+                margin: 0 auto 30px auto;
+            }
+            .profile-name {
+                font-size: 2.4rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .photo-gallery {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+
+        /* ========= MOBILE (up to 768px) ========= */
         @media (max-width: 768px) {
-            .container { padding: 20px; }
-            .profile-name { font-size: 2rem; }
-            .section-title { font-size: 1.6rem; }
-            .info-grid { grid-template-columns: 1fr; }
-            .photo-gallery { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+            body {
+                padding: 20px 10px;
+            }
+            .container { 
+                padding: 20px 15px; 
+                border-radius: 16px;
+            }
+            .profile-header {
+                margin-bottom: 25px;
+                padding-bottom: 20px;
+            }
+            .profile-pic-container {
+                width: 140px;
+                height: 140px;
+                border-width: 4px;
+            }
+            .profile-name { 
+                font-size: 2rem; 
+            }
+            .profile-tagline {
+                font-size: 0.98rem;
+            }
+            .download-button {
+                width: 100%;
+                max-width: 100%;
+                font-size: 0.95rem;
+                padding: 12px 18px;
+            }
+            .section { 
+                padding: 20px; 
+                margin-bottom: 20px;
+            }
+            .section-title { 
+                font-size: 1.6rem; 
+            }
+            .about-text {
+                font-size: 0.98rem;
+            }
+            .info-grid { 
+                grid-template-columns: 1fr; 
+                gap: 15px;
+            }
+            .info-item {
+                padding: 14px;
+            }
+            .info-item span {
+                font-size: 0.98rem;
+            }
+            .photo-gallery { 
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); 
+                gap: 12px;
+            }
+            .gallery-img {
+                height: 150px;
+            }
+            .lightbox-content {
+                width: 92%;
+            }
+            .close {
+                top: 15px;
+                right: 12px;
+                font-size: 32px;
+            }
+        }
+
+        /* ========= SMALL MOBILE (up to 480px) ========= */
+        @media (max-width: 480px) {
+            body {
+                padding: 15px 8px;
+            }
+            .container {
+                padding: 18px 12px;
+            }
+            .profile-pic-container {
+                width: 120px;
+                height: 120px;
+            }
+            .profile-name {
+                font-size: 1.8rem;
+            }
+            .section-title {
+                font-size: 1.4rem;
+            }
+            .photo-gallery {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 10px;
+            }
+            .gallery-img {
+                height: 130px;
+            }
+            .about-text,
+            .info-item span {
+                font-size: 0.95rem;
+            }
+            .download-button {
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -318,6 +462,10 @@
         </header>
 
         <main>
+            <!-- (rest of your sections unchanged) -->
+            <!-- About, Partner Preference, Personal & Professional, Family, Lifestyle, Gallery, Contact -->
+            <!-- I’m keeping all your original HTML & JS logic below exactly as-is -->
+
             <section class="section">
                 <h2 class="section-title">About Me</h2>
                 <p class="about-text">
@@ -384,8 +532,7 @@
                     <img src="gallery2.jpg" alt="Photo 2" class="gallery-img" onerror="this.src='https://via.placeholder.com/300?text=Img+2';">
                     <img src="gallery3.jpg" alt="Photo 3" class="gallery-img" onerror="this.src='https://via.placeholder.com/300?text=Img+3';">
                     <img src="gallery4.jpg" alt="Photo 4" class="gallery-img" onerror="this.src='https://via.placeholder.com/300?text=Img+4';">
-                    <img src="gallery5.jpg" alt="Photo 4" class="gallery-img" onerror="this.src='https://via.placeholder.com/300?text=Img+5';">
-
+                    <img src="gallery5.jpg" alt="Photo 5" class="gallery-img" onerror="this.src='https://via.placeholder.com/300?text=Img+5';">
                 </div>
             </section>
             
@@ -412,24 +559,17 @@
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        // INTERACTION: Click to Enlarge Canvas & Increase Particle Speed
         let speedMultiplier = 1;
         
         window.addEventListener('mousedown', () => {
-            // 1. Enlarge the Whole Background (Zoom effect)
             canvas.classList.add('animate-active');
-            
-            // 2. Increase movement speed
             speedMultiplier = 5;
-
-            // 3. Reset after 2 seconds
             setTimeout(() => {
                 canvas.classList.remove('animate-active');
                 speedMultiplier = 1; 
             }, 2000);
         });
 
-        // Touch support
         window.addEventListener('touchstart', () => {
             canvas.classList.add('animate-active');
             speedMultiplier = 5;
@@ -446,28 +586,19 @@
                 this.directionX = (Math.random() * 0.6) - 0.3; 
                 this.directionY = (Math.random() * 0.6) - 0.3; 
                 this.type = Math.random() > 0.5 ? 'image' : 'text'; 
-                
-                // --- REDUCED SIZE (Small and Elegant) ---
                 this.size = this.type === 'image' ? Math.random() * 20 + 25 : Math.random() * 8 + 12;
-                
                 this.text = "ॐ";
-                
-                // Sparkle Properties
-                this.opacity = Math.random() * 0.5 + 0.2; // Start opacity
-                this.opacitySpeed = Math.random() * 0.01 + 0.005; // How fast it twinkles
-                this.opacityDirection = 1; // 1 = fading in, -1 = fading out
+                this.opacity = Math.random() * 0.5 + 0.2;
+                this.opacitySpeed = Math.random() * 0.01 + 0.005;
+                this.opacityDirection = 1; 
             }
             draw() {
                 ctx.save();
-                
-                // Apply Sparkling Opacity
                 ctx.globalAlpha = this.opacity; 
                 
                 if (this.type === 'image' && ganeshImage.complete) {
-                    // Draw Ganesh Centered
                     ctx.drawImage(ganeshImage, this.x - this.size / 2, this.y - this.size / 2, this.size, this.size);
                 } else {
-                    // Draw Om Centered
                     ctx.font = "900 " + this.size + "px Arial";
                     ctx.fillStyle = '#e94560'; 
                     ctx.textAlign = 'center';
@@ -478,14 +609,10 @@
                 ctx.restore();
             }
             update() {
-                // Movement
                 this.x += this.directionX * speedMultiplier;
                 this.y += this.directionY * speedMultiplier;
-
-                // Sparkle Logic (Pulse Opacity)
                 this.opacity += this.opacitySpeed * this.opacityDirection * speedMultiplier;
                 
-                // Reverse direction at limits
                 if (this.opacity > 0.8) {
                     this.opacity = 0.8;
                     this.opacityDirection = -1;
@@ -494,7 +621,6 @@
                     this.opacityDirection = 1;
                 }
 
-                // Wrap around screen
                 if (this.x > canvas.width + this.size) this.x = -this.size;
                 if (this.x < -this.size) this.x = canvas.width + this.size;
                 if (this.y > canvas.height + this.size) this.y = -this.size;
@@ -506,7 +632,6 @@
 
         function initParticles() {
             particlesArray = [];
-            // Density
             let numberOfParticles = (canvas.height * canvas.width) / 35000; 
             for (let i = 0; i < numberOfParticles; i++) {
                 particlesArray.push(new Particle());
@@ -538,7 +663,6 @@
 
         galleryImages.forEach(img => {
             img.addEventListener('click', function(e) {
-                // Prevent the background click animation from firing when clicking an image
                 e.stopPropagation(); 
                 lightbox.style.display = "block";
                 lightboxImg.src = this.src;
@@ -553,7 +677,7 @@
         const salaryToggle = document.getElementById('salary-toggle');
         let salaryTimeout;
         salaryToggle.addEventListener('click', (e) => {
-            e.stopPropagation(); // Prevent background animation
+            e.stopPropagation();
             clearTimeout(salaryTimeout);
             if (salaryDisplay.textContent.includes('********')) {
                 salaryDisplay.innerHTML = '<strong>Salary:</strong> ₹ 28 LPA (Approx.)';
