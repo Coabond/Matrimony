@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <!-- Viewport already good for mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vishwanil Chakraborty - Matrimonial Profile</title>
     
@@ -213,6 +212,51 @@
         .info-item strong {
             color: var(--heading-color);
         }
+        
+        /* --- NEW TOOLTIP STYLES --- */
+        .salary-tooltip-wrapper {
+            position: relative; /* Essential for absolute positioning of tooltip */
+        }
+
+        .tooltip-content {
+            visibility: hidden;
+            width: 220px;
+            background-color: var(--bg-color-dark);
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px 10px;
+            position: absolute;
+            z-index: 100;
+            bottom: 125%; /* Position above the element */
+            left: 50%;
+            transform: translateX(-50%); /* Center horizontally */
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.85rem;
+            border: 1px solid var(--primary-accent);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            pointer-events: none; /* Allows clicking through to the eye button if needed, though eye is inside wrapper */
+        }
+
+        /* Tooltip Arrow */
+        .tooltip-content::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: var(--primary-accent) transparent transparent transparent;
+        }
+
+        /* Show tooltip on hover */
+        .salary-tooltip-wrapper:hover .tooltip-content {
+            visibility: visible;
+            opacity: 1;
+        }
+
         #salary-toggle { 
             cursor: pointer; 
             transition: color 0.3s ease, transform 0.2s ease; 
@@ -301,6 +345,7 @@
             body { background: #ffffff !important; color: #000000 !important; margin: 0 !important; }
             .container { box-shadow: none !important; border: none !important; margin: 0 !important; width: 100% !important; max-width: 100% !important; }
             #downloadBtn, #salary-toggle, #ganesh-canvas, .lightbox { display: none !important; }
+            .tooltip-content { display: none !important; } /* Hide tooltip in print */
             
             .profile-name { color: #000000 !important; text-shadow: none !important; font-size: 24pt !important; }
             .profile-tagline { color: #333333 !important; font-style: italic; }
@@ -462,10 +507,6 @@
         </header>
 
         <main>
-            <!-- (rest of your sections unchanged) -->
-            <!-- About, Partner Preference, Personal & Professional, Family, Lifestyle, Gallery, Contact -->
-            <!-- I’m keeping all your original HTML & JS logic below exactly as-is -->
-
             <section class="section">
                 <h2 class="section-title">About Me</h2>
                 <p class="about-text">
@@ -494,11 +535,14 @@
                     <div class="info-item"><i class="fas fa-map-marker-alt"></i><span><strong>Birth Place:</strong> Agartala</span></div>
                     <div class="info-item"><i class="fas fa-ruler-vertical"></i><span><strong>Height:</strong> 5' 11"</span></div>
                     <div class="info-item"><i class="fas fa-briefcase"></i><span><strong>Profession:</strong> Senior Consultant</span></div>
-                    <div class="info-item">
+                    
+                    <div class="info-item salary-tooltip-wrapper">
                         <i class="fas fa-wallet"></i>
                         <span id="salary-display"><strong>Salary:</strong> ********</span>
                         <i class="fas fa-eye" id="salary-toggle" style="margin-left: auto;"></i>
+                        <span class="tooltip-content">Click on eye button to unmask the salary</span>
                     </div>
+                    
                 </div>
             </section>
 
@@ -694,5 +738,3 @@
     </script>
 </body>
 </html>
-
-
